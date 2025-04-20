@@ -1,0 +1,93 @@
+// Tạo đối tượng footballTeam
+const footballTeam = {
+  teamName: "Hà Nội FC",
+  coachName: "Chu Đình Nghiêm",
+  players: [
+    {
+      name: "Nguyễn Quang Hải",
+      age: 25,
+      position: "Tiền vệ",
+      isInjured: false
+    },
+    {
+      name: "Nguyễn Văn Quyết",
+      age: 32,
+      position: "Tiền đạo",
+      isInjured: true
+    },
+    {
+      name: "Trần Đình Trọng",
+      age: 26,
+      position: "Hậu vệ",
+      isInjured: false
+    },
+    {
+      name: "Bùi Tiến Dũng",
+      age: 28,
+      position: "Thủ môn",
+      isInjured: false
+    }
+  ],
+
+  // Phương thức hiển thị thông tin đội bóng
+  displayTeamInfo: function() {
+    console.log(`Đội bóng: ${this.teamName}`);
+    console.log(`Huấn luyện viên: ${this.coachName}`);
+    console.log("Danh sách cầu thủ:");
+    
+    this.players.forEach((player, index) => {
+      console.log(`${index + 1}. ${player.name} - ${player.age} tuổi - Vị trí: ${player.position} - ${player.isInjured ? "Đang chấn thương" : "Không chấn thương"}`);
+    });
+  },
+
+  // Phương thức thêm cầu thủ mới
+  addPlayer: function(name, age, position, isInjured) {
+    this.players.push({
+      name,
+      age,
+      position,
+      isInjured
+    });
+    console.log(`Đã thêm cầu thủ ${name} vào đội hình.`);
+  },
+
+  // Phương thức tìm cầu thủ theo tên
+  findPlayerByName: function(name) {
+    return this.players.find(player => 
+      player.name.toLowerCase() === name.toLowerCase()
+    );
+  },
+
+  // Phương thức liệt kê cầu thủ bị chấn thương
+  listInjuredPlayers: function() {
+    return this.players.filter(player => player.isInjured);
+  },
+
+  // Phương thức tính tuổi trung bình của đội
+  calculateAverageAge: function() {
+    const totalAge = this.players.reduce((sum, player) => sum + player.age, 0);
+    return totalAge / this.players.length;
+  }
+};
+
+// Sử dụng các phương thức
+console.log("=== THÔNG TIN ĐỘI BÓNG ===");
+footballTeam.displayTeamInfo();
+
+console.log("\n=== THÊM CẦU THỦ MỚI ===");
+footballTeam.addPlayer("Phạm Thành Lương", 35, "Tiền vệ", false);
+
+console.log("\n=== TÌM CẦU THỦ ===");
+const player = footballTeam.findPlayerByName("Nguyễn Văn Quyết");
+if (player) {
+  console.log(`Tìm thấy: ${player.name} - ${player.position}`);
+} else {
+  console.log("Không tìm thấy cầu thủ");
+}
+
+console.log("\n=== DANH SÁCH CẦU THỦ CHẤN THƯƠNG ===");
+const injuredPlayers = footballTeam.listInjuredPlayers();
+injuredPlayers.forEach(player => console.log(player.name));
+
+console.log("\n=== TUỔI TRUNG BÌNH ĐỘI ===");
+console.log(`Tuổi trung bình: ${footballTeam.calculateAverageAge().toFixed(1)}`);
