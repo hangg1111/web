@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ẩm Thực Ăn Vặt</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .top-bar {
+      background: #5c2c06;
+      padding: 10px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .logo {
+      height: 50px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+    }
+    .search-box input {
+      padding: 5px;
+      width: 200px;
+    }
+    .search-box button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .cart {
+      font-size: 20px;
+    }
+    .slider {
+      position: relative;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    .slides img {
+      width: 100%;
+      display: none;
+    }
+    .slides img.active {
+      display: block;
+    }
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+    .support {
+      background: #f8f4e1;
+      text-align: center;
+      padding: 20px;
+    }
+    .support button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .zalo {
+      background: #7cc2ff;
+    }
+    .facebook {
+      background: #3b5998;
+      color: white;
+    }
+    .hotline {
+      background: crimson;
+      color: white;
+      padding: 10px;
+      margin: 10px auto;
+      display: inline-block;
+      font-weight: bold;
+    }
+    .services {
+      margin-top: 20px;
+    }
+    .services div {
+      margin: 10px 0;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top-bar">
+      <img src="logo.png" alt="Ẩm Thực Ăn Việt" class="logo">
+      <div class="search-box">
+        <input type="text" placeholder="Bạn muốn mua gì?">
+        <button><i>🔍</i></button>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Đồ ăn vặt</a></li>
+          <li><a href="#">Đồ ăn đêm</a></li>
+          <li><a href="#">Đồ uống</a></li>
+          <li><a href="#">Tin tức</a></li>
+          <li><a href="#">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="cart">🛒 <span>0</span></div>
+    </div>
+  </header>
+
+  <section class="slider">
+    <div class="slides">
+      <img src="slide1.png" alt="Chè hạt sen" class="active">
+      <img src="slide2.png" alt="Bánh xếp tôm thịt">
+      <img src="slide3.png" alt="Thịt kho gừng">
+      <img src="slide4.png" alt="Bún mọc">
+    </div>
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+  </section>
+
+  <section class="support">
+    <button class="zalo">Chat Zalo</button>
+    <button class="facebook">Chat Facebook</button>
+    <div class="hotline">Hotline: 0986.989.626</div>
+    <div class="services">
+      <div>🚀 Giao hàng siêu tốc</div>
+      <div>💬 Tư vấn nhiệt tình</div>
+      <div>💵 Thanh toán khi nhận hàng</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Ăn Vặt Việt. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slides img');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    function showSlide(index) {
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx === index) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    setInterval(nextSlide, 3000); // Tự động chuyển slide sau 3 giây
+  </script>
+</body>
+</html>
